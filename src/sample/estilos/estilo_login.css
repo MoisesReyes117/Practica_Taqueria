@@ -1,0 +1,14 @@
+#boton.button:hover{
+ -fx-background-color: #C28484;
+}
+.root{
+-fx-base: #701717;
+}
+#boton{
+-fx-background-color: #EEEEEE;
+}
+#texto{
+-fx-background-color: #464646;
+-fx-background-radius: 5;
+-fx-padding: 5;
+}
