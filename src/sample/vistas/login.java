@@ -25,7 +25,7 @@ public class login extends Stage {
 
     public login(){
         CrearGUI();
-        this.setTitle("Identificate");
+        this.setTitle("Login");
         this.setScene(escena);
         this.setMaximized(true);
         this.show();

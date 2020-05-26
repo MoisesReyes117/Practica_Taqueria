@@ -14,29 +14,29 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class FrmProducto extends Stage {
-    private TableView<productoDAO> tbvProductos;
-    private productoDAO objP;
+public class FrmProveedor extends Stage {
+    private TableView<proveedorDAO> tbvProveedores;
+    private proveedorDAO objP;
     private VBox vbox;
-    private TextField txtNombre,txtDesc,txtprecio;
+    private TextField txtNombre,txtCel,txtDir;
     private Button btnGuardar;
     private Scene escena;
     private Connection con;
     private String nombre;
 
 
-    public FrmProducto(TableView<productoDAO> tbvProductos, productoDAO obj){
+    public FrmProveedor(TableView<proveedorDAO> tbvProveedores, proveedorDAO obj){
 
         if (obj != null)
             this.objP = obj;
         else
-            objP = new productoDAO();
+            objP = new proveedorDAO();
 
 
-        this.tbvProductos = tbvProductos;
+        this.tbvProveedores = tbvProveedores;
         CrearGUI();
         con = Conexion.con;
-        this.setTitle("Gestion de productos");
+        this.setTitle("Gestion de Proveedores");
         this.setScene(escena);
         this.show();
     }
@@ -44,45 +44,46 @@ public class FrmProducto extends Stage {
 
     private void CrearGUI() {
         vbox = new VBox();
-        txtDesc = new TextField();
-        txtprecio = new TextField();
+        txtCel = new TextField();
+        txtDir = new TextField();
         txtNombre = new TextField();
-        nombre = objP.getNomProducto();
-        txtNombre.setText(objP.getNomProducto());
+        nombre = objP.getNomProveedor();
+        txtNombre.setText(objP.getNomProveedor());
         txtNombre.setPromptText("Introduce el nombre");
-        txtDesc.setText(objP.getDescripcion());
-        txtDesc.setPromptText("Introduce la descripción");
-        txtprecio.setText(objP.getPrecio()+"");
-        txtprecio.setPromptText("Introduce el precio");
+        txtCel.setText(objP.getCelular());
+        txtCel.setPromptText("Introduce el número celular");
+        txtDir.setText(objP.getDireccion());
+        txtDir.setPromptText("Introduce la dirección");
 
         btnGuardar = new Button("Guardar");
         btnGuardar.setOnAction(event -> { guardarDatos(); });
-        vbox.getChildren().addAll(txtNombre,txtDesc,txtprecio,btnGuardar);
+        vbox.getChildren().addAll(txtNombre,txtCel,txtDir,btnGuardar);
         escena = new Scene(vbox,350,250);
     }
 
     private void guardarDatos() {
-        objP.setNomProducto(txtNombre.getText());
-        objP.setDescripcion(txtDesc.getText());
-        objP.setPrecio(Double.parseDouble(txtprecio.getText()));
 
-        String query = "select * from producto where nombre='"+nombre+"' ;";
+        objP.setNomProveedor(txtNombre.getText());
+        objP.setCelular(txtCel.getText());
+        objP.setDireccion(txtDir.getText());
+
+        String query = "select * from Proveedor where nombre='"+nombre+"'; ";
 
         try {
             Statement stmt = con.createStatement();
             ResultSet res = stmt.executeQuery(query);
             if (res.next()){
-                objP.updProducto();
+                objP.updproveedor();
             }else{
-                objP.insProducto();
+                objP.insproveedor();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        tbvProductos.setItems(objP.selAllProducto());
-        tbvProductos.refresh();
+        tbvProveedores.setItems(objP.selAllProveedor());
+        tbvProveedores.refresh();
 
         this.close();
 

@@ -28,7 +28,6 @@ public class menuPrincipal extends Stage {
     private void CrearGUI() {
 
         brpPrincipal = new BorderPane();
-
         mnbTaqueria = new MenuBar();
         brpPrincipal.setTop(mnbTaqueria);
         menConsultas = new Menu("Consultas");
@@ -69,7 +68,7 @@ public class menuPrincipal extends Stage {
                 new verProductos();
                 break;
             case 2:
-                //new Taquimecanografo();
+                new verProveedores();
                 break;
             case 3:
                 // new CRUDProductos();
