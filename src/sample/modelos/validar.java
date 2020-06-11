@@ -17,7 +17,6 @@ public class validar implements EventHandler {
     private String user,pass;
     private Connection con;
 
-
     public validar (TextField txtUsuario, TextField txtContraseña){
         this.txtUsuario = txtUsuario;
         this.txtContraseña = txtContraseña;
@@ -44,13 +43,13 @@ public class validar implements EventHandler {
             ResultSet res = stmt.executeQuery(query);
             if (res.next()){
                 Alert objAlert2 = new Alert (Alert.AlertType.INFORMATION);
-                objAlert2.setTitle("Acesso");
+                objAlert2.setTitle("Acesso Permitido  ");
                 objAlert2.setHeaderText("          Datos validos");
                 objAlert2.setContentText("                    Bienvenido "+user+" ");
                 objAlert2.showAndWait();
                 new menuPrincipal();
             }else {
-                Alert objAlert = new Alert (Alert.AlertType.INFORMATION);
+                Alert objAlert = new Alert (Alert.AlertType.WARNING);
                 objAlert.setTitle("Acceso");
                 objAlert.setHeaderText("          Error de acceso");
                 objAlert.setContentText("Los datos que ingreso son erroneos, vuelva a intertarlo");

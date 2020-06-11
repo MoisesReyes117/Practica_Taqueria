@@ -4,16 +4,16 @@ import javafx.scene.control.*;
 
 import java.util.Optional;
 
-public class ButtonCell extends TableCell<productoDAO, String> {
+public class ButtonCellAlimentos extends TableCell<productoDAO, String> {
     private Button btnCelda;
     private productoDAO objP;
 
-    public ButtonCell (int opc) {
+    public ButtonCellAlimentos(int opc) {
         if(opc == 1){
             btnCelda = new Button("Editar");
             btnCelda.setOnAction(event ->{
-                TableView<productoDAO> tbvTemp = ButtonCell.this.getTableView();
-                objP = ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
+                TableView<productoDAO> tbvTemp = ButtonCellAlimentos.this.getTableView();
+                objP = ButtonCellAlimentos.this.getTableView().getItems().get(ButtonCellAlimentos.this.getIndex());
                 new FrmProducto(tbvTemp,objP);
             });
         }else {
@@ -25,12 +25,12 @@ public class ButtonCell extends TableCell<productoDAO, String> {
                 alert.setContentText("¿ Deseas eliminar el producto ?");
                 Optional<ButtonType> result = alert.showAndWait();
                 if(result.get() == ButtonType.OK){
-                    objP = ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
+                    objP = ButtonCellAlimentos.this.getTableView().getItems().get(ButtonCellAlimentos.this.getIndex());
                     objP.delProducto();
 
                     //refrescar la tabla
-                    ButtonCell.this.getTableView().setItems(objP.selAllProducto());
-                    ButtonCell.this.getTableView().refresh();
+                    ButtonCellAlimentos.this.getTableView().setItems(objP.selAllProducto());
+                    ButtonCellAlimentos.this.getTableView().refresh();
                 }
 
 

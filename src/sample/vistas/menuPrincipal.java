@@ -10,7 +10,7 @@ import sample.modelos.Conexion;
 
 public class menuPrincipal extends Stage {
 
-    MenuItem mitProductos,mitProveedores,mitNuevaOrden,mitOrdenes,mitExit;
+    MenuItem mitProductos,mitProveedores,mitNuevaOrden,mitOrdenesP,mitExit;
     MenuBar mnbTaqueria;
     Menu menConsultas,menOrdenes,menSalir;
     Scene escena;
@@ -28,30 +28,29 @@ public class menuPrincipal extends Stage {
     private void CrearGUI() {
 
         brpPrincipal = new BorderPane();
-
         mnbTaqueria = new MenuBar();
         brpPrincipal.setTop(mnbTaqueria);
         menConsultas = new Menu("Consultas");
         menOrdenes = new Menu("Ordenes");
         menSalir = new Menu("Salir");
 
-        mitProductos = new MenuItem("Productos disponibles");
+        mitProductos = new MenuItem("Alimentos");
         mitProductos.setOnAction(event -> OpcionMenu(1));
 
         mitProveedores = new MenuItem("Proveedores");
         mitProveedores.setOnAction(event -> OpcionMenu(2));
 
-        mitNuevaOrden = new MenuItem("Nueva Orden");
+        mitNuevaOrden = new MenuItem("Ordenes activas");
         mitNuevaOrden.setOnAction(event -> OpcionMenu(3));
 
-        mitOrdenes = new MenuItem("Consulta orden");
-        mitOrdenes.setOnAction(event -> OpcionMenu(4));
+        mitOrdenesP = new MenuItem("Historial ordenes");
+        mitOrdenesP.setOnAction(event -> OpcionMenu(4));
 
         mitExit = new MenuItem("¡Vuelva pronto!");
         mitExit.setOnAction(event -> OpcionMenu(20));
 
         menConsultas.getItems().addAll(mitProductos, mitProveedores);
-        menOrdenes.getItems().addAll(mitNuevaOrden, mitOrdenes);
+        menOrdenes.getItems().addAll(mitNuevaOrden,mitOrdenesP);
         menSalir.getItems().add(mitExit);
 
         //menu bar
@@ -69,13 +68,13 @@ public class menuPrincipal extends Stage {
                 new verProductos();
                 break;
             case 2:
-                //new Taquimecanografo();
+                new verProveedores();
                 break;
             case 3:
-                // new CRUDProductos();
+                 new verOrdenes();
                 break;
             case 4:
-                // new PistaAtletismo();
+                new verHistorialOrdenes();
                 break;
             case 20:
                 System.exit(0);
