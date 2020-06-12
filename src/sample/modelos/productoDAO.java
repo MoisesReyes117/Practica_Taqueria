@@ -32,7 +32,7 @@ public class productoDAO {
 
     public void insProducto(){
 
-        String query = "insert into producto" +
+        String query = "insert into comida" +
                 "(nombre,descripcion,precio) " +
                 "values('"+nomProducto+"','"+descripcion+"',"+precio+")";
         try {
@@ -44,8 +44,8 @@ public class productoDAO {
     }
 
     public void updProducto(){
-        String query = "update producto set nombre='"+nomProducto+"'" +
-                ",descripcion='"+descripcion+"',precio="+precio+" where CveProducto="+CveProducto;
+        String query = "update comida set nombre='"+nomProducto+"'" +
+                ",descripcion='"+descripcion+"',precio="+precio+" where CveComida="+CveProducto;
         try{
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -53,7 +53,7 @@ public class productoDAO {
     }
 
     public void delProducto(){
-        String query = "delete from producto where CveProducto="+CveProducto;
+        String query = "delete from comida where CveComida="+CveProducto;
         try{
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -64,14 +64,13 @@ public class productoDAO {
 
         ObservableList<productoDAO> listaP = FXCollections.observableArrayList();
         productoDAO objP = null;
-        String query = "select * from producto order by nombre";
-        //String query2 = "select insumo.nombre from insumo,producto,compone where producto.CveProducto=compone.Cveproducto and compone.CveInsumo=insumo.CveInsumo  order by nombre";
+        String query = "select * from comida order by nombre";
         try{
             Statement stmt = con.createStatement();
             ResultSet res = stmt.executeQuery(query);
             while(res.next()){
                 objP = new productoDAO();
-                objP.setCveProducto(res.getInt("CveProducto"));
+                objP.setCveProducto(res.getInt("CveComida"));
                 objP.setNomProducto(res.getString("nombre"));
                 objP.setDescripcion(res.getString("descripcion"));
                 objP.setPrecio(res.getDouble("precio"));
@@ -84,5 +83,26 @@ public class productoDAO {
 
 
         return listaP;
+    }
+
+    public void getProvByCve (){
+        String query = "SELECT * FROM comida where CveComida="+CveProducto;
+        try {
+            Statement stmt = Conexion.con.createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            if (res.next()){
+                nomProducto = res.getString("nombre");
+                descripcion = res.getString("descripcion");
+                precio = res.getInt("precio");
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return nomProducto;
     }
 }

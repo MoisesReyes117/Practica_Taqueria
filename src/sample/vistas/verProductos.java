@@ -9,7 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import sample.modelos.ButtonCell;
+import sample.modelos.ButtonCellAlimentos;
 import sample.modelos.FrmProducto;
 import sample.modelos.productoDAO;
 
@@ -61,7 +61,7 @@ public class verProductos extends Stage {
                 new Callback<TableColumn<productoDAO, String>, TableCell<productoDAO, String>>() {
                     @Override
                     public TableCell<productoDAO, String> call(TableColumn<productoDAO, String> param) {
-                        return new ButtonCell(2);
+                        return new ButtonCellAlimentos(2);
                     }
                 }
         );
@@ -71,7 +71,7 @@ public class verProductos extends Stage {
                 new Callback<TableColumn<productoDAO, String>, TableCell<productoDAO, String>>() {
                     @Override
                     public TableCell<productoDAO, String> call(TableColumn<productoDAO, String> param) {
-                        return new ButtonCell(1);
+                        return new ButtonCellAlimentos(1);
                     }
                 }
         );

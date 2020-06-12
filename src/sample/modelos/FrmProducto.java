@@ -22,6 +22,7 @@ public class FrmProducto extends Stage {
     private Button btnGuardar;
     private Scene escena;
     private Connection con;
+    private String nombre;
 
 
     public FrmProducto(TableView<productoDAO> tbvProductos, productoDAO obj){
@@ -46,6 +47,7 @@ public class FrmProducto extends Stage {
         txtDesc = new TextField();
         txtprecio = new TextField();
         txtNombre = new TextField();
+        nombre = objP.getNomProducto();
         txtNombre.setText(objP.getNomProducto());
         txtNombre.setPromptText("Introduce el nombre");
         txtDesc.setText(objP.getDescripcion());
@@ -60,7 +62,6 @@ public class FrmProducto extends Stage {
     }
 
     private void guardarDatos() {
-        String nombre = txtNombre.getText();
         objP.setNomProducto(txtNombre.getText());
         objP.setDescripcion(txtDesc.getText());
         objP.setPrecio(Double.parseDouble(txtprecio.getText()));

@@ -2,10 +2,15 @@
  -fx-background-color: #C28484;
 }
 .root{
--fx-base: #701717;
+    -fx-background-image: url("../imagenes/fondoRojo.jpg");
+    -fx-background-size: cover, auto;
 }
 #boton{
 -fx-background-color: #EEEEEE;
+-fx-pref-height:20;
+-fx-min-width:230;
+-fx-background-radius: 5;
+-fx-padding: 8;
 }
 #texto{
 -fx-background-color: #464646;

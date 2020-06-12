@@ -3,5 +3,10 @@
 -fx-background-repeat: stretch;
 -fx-background-size: 1366 700;
 -fx-background-position: center bottom;
--fx-effect: dropshadow(three-pass-box, red, 10, 0.2, 0, 0);
+-fx-effect: dropshadow(three-pass-box, yellow, 10, 0.2, 0, 0);
 }
+.menu-bar{
+    -fx-background-image:url("../imagenes/fondoPlata.jpg");
+    -fx-border-color: #FDFDF8;
+    -fx-border-width: 4;
+    }
