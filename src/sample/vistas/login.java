@@ -1,20 +1,21 @@
 package sample.vistas;
 
+import javafx.event.Event;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import sample.modelos.Conexion;
 import sample.modelos.validar;
 
-public class login extends Stage {
 
+
+
+public class login extends Stage {
     private Scene escena;
     private HBox hbox1,hbox2,hbox3,hboxs;
     private VBox vbox;
@@ -48,7 +49,7 @@ public class login extends Stage {
         btnValidar.setTextFill(Color.BLACK);
         txtUsuario = new TextField();
         txtContraseña = new PasswordField();
-        btnValidar.addEventHandler(MouseEvent.MOUSE_CLICKED, new validar(txtUsuario,txtContraseña));
+        btnValidar.addEventHandler(MouseEvent.MOUSE_CLICKED, new validar(txtUsuario,txtContraseña,this));
 
         hbox1.getChildren().addAll(lblUsuario,txtUsuario);
         hbox2.getChildren().addAll(lblContraseña,txtContraseña);
@@ -68,6 +69,8 @@ public class login extends Stage {
     }
 
 
-
-
 }
+
+
+
+
