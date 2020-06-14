@@ -13,8 +13,8 @@ public class bebidaDAO {
     private String nomBebida;
     private String tamaño;
     private double precio;
-    private int CveTipoBebida;
-    private boolean existencia;
+    private int CveProveedor,cantidad;
+
 
     public int getCveBebida() { return CveBebida; }
     public void setCveBebida(int CveBebida) { this.CveBebida = CveBebida; }
@@ -24,10 +24,11 @@ public class bebidaDAO {
     public void setTamaño(String tamaño) { this.tamaño = tamaño; }
     public double getPrecio() { return precio; }
     public void setPrecio(double precio) { this.precio = precio; }
-    public int getCveTipoBebida() { return CveTipoBebida; }
-    public void setCveTipoBebida(int CveTipoBebida) { this.CveTipoBebida = CveTipoBebida; }
-    public boolean getExistencia(){return existencia;}
-    public void setExistencia(boolean existencia){this.existencia = existencia;}
+    public int getCantidad() { return cantidad; }
+    public void setCantidad(int cantidad) { this.cantidad = cantidad; }
+    public int getCveProveedor() { return CveProveedor; }
+    public void setCveProveedor(int CveProveedor) { this.CveProveedor = CveProveedor; }
+
 
 
     private Connection con;
@@ -38,8 +39,8 @@ public class bebidaDAO {
     public void insBebida(){
 
         String query = "insert into bebida" +
-                "(nombre,tamaño,precio,CveTipoBebida,existencia) " +
-                "values('"+nomBebida+"','"+tamaño+"',"+precio+","+CveTipoBebida+","+existencia+")";
+                "(nombre,tamaño,precio,cantidad,CveProveedor,CveTipoBebida) " +
+                "values('"+nomBebida+"','"+tamaño+"',"+precio+","+cantidad+","+CveProveedor+",1)";
         try {
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -50,7 +51,7 @@ public class bebidaDAO {
 
     public void updBebida(){
         String query = "update bebida set nombre='"+nomBebida+"'" +
-                ",tamaño='"+tamaño+"',precio="+precio+",CveTipoBebida="+CveTipoBebida+",existencia="+existencia+" where CveBebida="+CveBebida;
+                ",tamaño='"+tamaño+"',precio="+precio+",cantidad="+cantidad+",CveProveedor="+CveProveedor+" where CveBebida="+CveBebida;
         try{
             Statement stmt = con.createStatement();
             stmt.executeUpdate(query);
@@ -69,7 +70,7 @@ public class bebidaDAO {
 
         ObservableList<bebidaDAO> listaB = FXCollections.observableArrayList();
         bebidaDAO objB = null;
-        String query = "select * from bebida order by nombre";
+        String query = "select * from bebida where cantidad>0 order by nombre";
         try{
             Statement stmt = con.createStatement();
             ResultSet res = stmt.executeQuery(query);
@@ -79,8 +80,8 @@ public class bebidaDAO {
                 objB.setNomBebida(res.getString("nombre"));
                 objB.setTamaño(res.getString("tamaño"));
                 objB.setPrecio(res.getDouble("precio"));
-                objB.setCveTipoBebida(res.getInt("CveTipoBebida"));
-                objB.setExistencia(res.getBoolean("existencia"));
+                objB.setCantidad(res.getInt("cantidad"));
+                objB.setCveProveedor(res.getInt("CveProveedor"));
                 listaB.add(objB);
             }
 
@@ -100,9 +101,9 @@ public class bebidaDAO {
             if (res.next()){
                 nomBebida = res.getString("nombre");
                 tamaño = res.getString("tamaño");
-                precio = res.getInt("precio");
-                CveTipoBebida = res.getInt("CveTipoBebida");
-                existencia = res.getBoolean("existencia");
+                precio = res.getDouble("precio");
+                cantidad = res.getInt("cantidad");
+                CveProveedor = res.getInt("CveProveedor");
             }
 
         }catch (Exception e){

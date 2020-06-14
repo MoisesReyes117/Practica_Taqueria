@@ -12,7 +12,7 @@ public class menuSecundario extends Stage {
 
     MenuItem mitNuevaOrden,mitOrdenesP,mitExit;
     MenuBar mnbTaqueria;
-    Menu menConsultas,menOrdenes,menSalir;
+    Menu menOrdenes,menSalir;
     Scene escena;
     BorderPane brpPrincipal;
 
@@ -30,34 +30,25 @@ public class menuSecundario extends Stage {
         brpPrincipal = new BorderPane();
         mnbTaqueria = new MenuBar();
         brpPrincipal.setTop(mnbTaqueria);
-        menConsultas = new Menu("Consultas");
         menOrdenes = new Menu("Ordenes");
         menSalir = new Menu("Salir");
 
-        /*
-        mitProductos = new MenuItem("Alimentos");
-        mitProductos.setOnAction(event -> OpcionMenu(1));
-
-        mitProveedores = new MenuItem("Proveedores");
-        mitProveedores.setOnAction(event -> OpcionMenu(2));
-
-         */
 
         mitNuevaOrden = new MenuItem("Ordenes activas");
-        mitNuevaOrden.setOnAction(event -> OpcionMenu(3));
+        mitNuevaOrden.setOnAction(event -> OpcionMenu(2));
 
         mitOrdenesP = new MenuItem("Historial ordenes");
-        mitOrdenesP.setOnAction(event -> OpcionMenu(4));
+        mitOrdenesP.setOnAction(event -> OpcionMenu(3));
 
         mitExit = new MenuItem("¡Vuelva pronto!");
         mitExit.setOnAction(event -> OpcionMenu(20));
 
-        menConsultas.getItems().addAll();
+
         menOrdenes.getItems().addAll(mitNuevaOrden,mitOrdenesP);
         menSalir.getItems().add(mitExit);
 
         //menu bar
-        mnbTaqueria.getMenus().addAll(menConsultas, menOrdenes, menSalir);
+        mnbTaqueria.getMenus().addAll(menOrdenes, menSalir);
         escena = new Scene(brpPrincipal, 400, 300);
 
         //Creamos la conexion a la base de datos
@@ -68,16 +59,12 @@ public class menuSecundario extends Stage {
     private void OpcionMenu(int i) {
         switch(i){
             case 1:
-                //new verProductos();
                 break;
             case 2:
-                //new verProveedores();
+                new CRUDOrdenes();
                 break;
             case 3:
-                new verOrdenes();
-                break;
-            case 4:
-                new verHistorialOrdenes();
+                new CRUDHistorialOrdenes();
                 break;
             case 20:
                 System.exit(0);

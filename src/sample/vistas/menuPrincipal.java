@@ -10,7 +10,7 @@ import sample.modelos.Conexion;
 
 public class menuPrincipal extends Stage {
 
-    MenuItem mitProductos,mitProveedores,mitNuevaOrden,mitOrdenesP,mitExit;
+    MenuItem mitProductos,mitBebidas,mitInsumos,mitProveedores,mitPromo,mitGrafica,mitNuevaOrden,mitOrdenesP,mitExit;
     MenuBar mnbTaqueria;
     Menu menConsultas,menOrdenes,menSalir;
     Scene escena;
@@ -37,19 +37,31 @@ public class menuPrincipal extends Stage {
         mitProductos = new MenuItem("Alimentos");
         mitProductos.setOnAction(event -> OpcionMenu(1));
 
+        mitBebidas = new MenuItem("Bebidas");
+        mitBebidas.setOnAction(event -> OpcionMenu(2));
+
+        mitInsumos = new MenuItem("Insumos");
+        mitInsumos.setOnAction(event -> OpcionMenu(3));
+
         mitProveedores = new MenuItem("Proveedores");
-        mitProveedores.setOnAction(event -> OpcionMenu(2));
+        mitProveedores.setOnAction(event -> OpcionMenu(4));
+
+        mitPromo = new MenuItem("Promociones");
+        mitPromo.setOnAction(event -> OpcionMenu(5));
+
+        mitGrafica = new MenuItem("Grafica");
+        mitGrafica.setOnAction(event -> OpcionMenu(6));
 
         mitNuevaOrden = new MenuItem("Ordenes activas");
-        mitNuevaOrden.setOnAction(event -> OpcionMenu(3));
+        mitNuevaOrden.setOnAction(event -> OpcionMenu(7));
 
         mitOrdenesP = new MenuItem("Historial ordenes");
-        mitOrdenesP.setOnAction(event -> OpcionMenu(4));
+        mitOrdenesP.setOnAction(event -> OpcionMenu(8));
 
         mitExit = new MenuItem("¡Vuelva pronto!");
         mitExit.setOnAction(event -> OpcionMenu(20));
 
-        menConsultas.getItems().addAll(mitProductos, mitProveedores);
+        menConsultas.getItems().addAll(mitProductos,mitBebidas,mitInsumos, mitProveedores,mitPromo,mitGrafica);
         menOrdenes.getItems().addAll(mitNuevaOrden,mitOrdenesP);
         menSalir.getItems().add(mitExit);
 
@@ -65,16 +77,28 @@ public class menuPrincipal extends Stage {
     private void OpcionMenu(int i) {
         switch(i){
             case 1:
-                new verProductos();
+                new CRUDProductos();
                 break;
             case 2:
-                new verProveedores();
+                new CRUDBebidas();
                 break;
             case 3:
-                 new verOrdenes();
+                new CRUDInsumos();
                 break;
             case 4:
-                new verHistorialOrdenes();
+                new CRUDProveedores();
+                break;
+            case 5:
+                new CRUDPromociones();
+                break;
+            case 6:
+                 new CRUDGrafica();
+                break;
+            case 7:
+                new CRUDOrdenes();
+                break;
+            case 8:
+                new CRUDHistorialOrdenes();
                 break;
             case 20:
                 System.exit(0);

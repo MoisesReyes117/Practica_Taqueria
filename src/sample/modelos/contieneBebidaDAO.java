@@ -1,6 +1,7 @@
 package sample.modelos;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class contieneBebidaDAO {
@@ -23,6 +24,32 @@ public class contieneBebidaDAO {
     private Connection con;
 
     public contieneBebidaDAO(){ con = Conexion.con; }
+
+    public void upCantidad(int clave,int cantidadRestar){
+
+        int cantidadExis=0;
+
+        String query = "select cantidad from bebida where CveBebida="+clave;
+        try{
+            Statement stmt = con.createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            while(res.next()){
+               cantidadExis = res.getInt("cantidad");
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        cantidadExis = cantidadExis-cantidadRestar;
+
+        String query2 = "update bebida set cantidad="+cantidadExis+" where CveBebida="+clave;
+        try {
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(query2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void insContenido(double subtotal,int clave,int cveBebida){
         this.subtotal = subtotal;

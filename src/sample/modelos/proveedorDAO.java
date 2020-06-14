@@ -86,4 +86,22 @@ public class proveedorDAO {
 
         return listaP;
     }
+    public void getProvByCve (){
+        String query = "SELECT * FROM proveedor where CveProveedor="+CveProveedor;
+        try {
+            Statement stmt = Conexion.con.createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            if (res.next()){
+                nomProveedor = res.getString("nombre");
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public String toString() {
+        return nomProveedor ;
+    }
+
 }
